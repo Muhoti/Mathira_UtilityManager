@@ -95,6 +95,9 @@ class Incidences: AppCompatActivity() {
         val sewerburst = findViewById<ImageView>(R.id.sewerburst)
         val supplyfail = findViewById<ImageView>(R.id.supplyfail)
         val illegalconnections = findViewById<ImageView>(R.id.illegalconnections)
+        val vandalism = findViewById<ImageView>(R.id.vandalism)
+        val other = findViewById<ImageView>(R.id.other)
+
 
         leaks.setOnClickListener {
             sendLeakageData()
@@ -110,6 +113,14 @@ class Incidences: AppCompatActivity() {
 
         illegalconnections.setOnClickListener {
             sendIllegalConnectionData()
+        }
+
+        vandalism.setOnClickListener {
+            sendVandalismData()
+        }
+
+        other.setOnClickListener {
+            sendOtherData()
         }
 
         reportIncident ()
@@ -159,6 +170,18 @@ class Incidences: AppCompatActivity() {
     private fun sendLeakageData() {
         val intent = Intent(this@Incidences, Reporting::class.java)
         intent.putExtra("ReportIncident", "Leakage")
+        startActivity(intent)
+    }
+
+    private fun sendVandalismData() {
+        val intent = Intent(this@Incidences, Reporting::class.java)
+        intent.putExtra("ReportIncident", "Vandalism")
+        startActivity(intent)
+    }
+
+    private fun sendOtherData() {
+        val intent = Intent(this@Incidences, Reporting::class.java)
+        intent.putExtra("ReportIncident", "Other")
         startActivity(intent)
     }
 
