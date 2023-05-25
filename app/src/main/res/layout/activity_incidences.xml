@@ -248,7 +248,7 @@
                                 android:id="@+id/vandalism"
                                 android:layout_width="150dp"
                                 android:layout_height="150dp"
-                                android:src="@drawable/illegalconnections1" />
+                                android:src="@drawable/vandalism" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -271,7 +271,7 @@
                                 android:id="@+id/other"
                                 android:layout_width="150dp"
                                 android:layout_height="150dp"
-                                android:src="@drawable/leaks" />
+                                android:src="@drawable/other" />
 
                             <TextView
                                 android:layout_width="match_parent"
