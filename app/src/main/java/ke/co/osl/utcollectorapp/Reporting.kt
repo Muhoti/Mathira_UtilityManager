@@ -48,7 +48,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-
 class Reporting: AppCompatActivity() {
     lateinit var preferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
@@ -69,7 +68,7 @@ class Reporting: AppCompatActivity() {
     private var mCurrentPhotoPath: String? = null
     private lateinit var locationCallback: LocationCallback
 
-    val ip_URL = "http://102.222.147.190/api/homepage"
+    val ip_URL = "http://102.215.32.186/api/homepage"
 
     object AndroidJSInterface {
         @JavascriptInterface

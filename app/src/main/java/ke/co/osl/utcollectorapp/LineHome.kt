@@ -49,7 +49,7 @@ class LineHome : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
 
-     val ip_URL = "http://102.222.147.190/api/mapline/"
+     val ip_URL = "http://102.215.32.186/api/mapline/"
 
     object AndroidJSInterface {
         @JavascriptInterface
