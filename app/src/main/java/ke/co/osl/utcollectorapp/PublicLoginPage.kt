@@ -68,25 +68,26 @@ class PublicLoginPage: AppCompatActivity() {
 
     private fun postLoginDetails(){
         val next = findViewById<Button>(R.id.next)
-        val email = findViewById<EditText>(R.id.email)
+        val phone = findViewById<EditText>(R.id.phone)
         val password = findViewById<EditText>(R.id.password)
         val error = findViewById<TextView>(R.id.error)
         val progress = findViewById<ProgressBar>(R.id.progress)
 
         next.setOnClickListener {
             error.text = ""
-            if(!isValidEmail(email.text.toString())) {
-                error.text = "Invalid email address"
-                return@setOnClickListener
-            }
+
             if(password.text.toString().length < 6) {
                 error.text = "Password is too short!"
+                return@setOnClickListener
+            } else
+                if (phone.text.toString().isEmpty()){
+                error.text = "Please fill all entries"
                 return@setOnClickListener
             }
 
             progress.visibility = View.VISIBLE
             val loginBody = LoginBody(
-                email.text.toString(),
+                phone.text.toString(),
                 password.text.toString(),
             )
 
@@ -140,17 +141,16 @@ class PublicLoginPage: AppCompatActivity() {
             error.text = ""
             if(!isValidEmail(regemail.text.toString())) {
                 error.text = "Invalid email address"
-                error.text = ""
                 return@setOnClickListener
-            }
-
-            if (regname.text.toString() == ""){
+            } else if (regname.text.toString().isEmpty()){
                 error.text = "Please fill all entries"
-            }
+                return@setOnClickListener
+            } else
 
-            if (regphone.text.toString() == ""){
+            if (regphone.text.toString().isEmpty()){
                 error.text = "Please fill all entries"
-            }
+                return@setOnClickListener
+            } else
 
             if(regpassword.text.toString().length < 6) {
                 error.text = "Password is too short!"
@@ -164,7 +164,7 @@ class PublicLoginPage: AppCompatActivity() {
                 regphone.text.toString(),
                 regpassword.text.toString()
             )
-
+            System.out.println(regBody)
             val apiInterface = ApiInterface.create().registerUser(regBody)
 
             apiInterface.enqueue( object : Callback<Message> {
@@ -172,25 +172,31 @@ class PublicLoginPage: AppCompatActivity() {
                 override fun onResponse(call: Call<Message>?, response: Response<Message>?) {
                     progress.visibility = View.GONE
                     System.out.println(response?.body())
+
                     if(response?.body()?.success !== null){
+                        System.out.println("Feedback is " + error.text)
                         error.text = response?.body()?.success
+                        System.out.println("Feedback is " + error.text)
                         lifecycleScope.launch {
                             delay(3000)
                             regdialog.hide()
                         }
 
-                        startActivity(Intent(this@PublicLoginPage,LoginPage::class.java))
+                        startActivity(Intent(this@PublicLoginPage,PublicLoginPage::class.java))
                         finish()
                     }
                     else {
                         editor.putString("token","")
                         editor.commit()
                         error.text = response?.body()?.error
+                        System.out.print("damn there's a bug")
                     }
                 }
                 override fun onFailure(call: Call<Message>?, t: Throwable?) {
                     System.out.println(t)
                     error.text = "Connection to server failed"
+                    System.out.print("damn there's a bug here")
+
                     editor.putString("token","")
                     editor.commit()
                 }
