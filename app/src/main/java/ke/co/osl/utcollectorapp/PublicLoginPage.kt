@@ -139,10 +139,7 @@ class PublicLoginPage: AppCompatActivity() {
 
         regsubmit.setOnClickListener {
             error.text = ""
-            if(!isValidEmail(regemail.text.toString())) {
-                error.text = "Invalid email address"
-                return@setOnClickListener
-            } else if (regname.text.toString().isEmpty()){
+            if (regname.text.toString().isEmpty()){
                 error.text = "Please fill all entries"
                 return@setOnClickListener
             } else
@@ -208,7 +205,6 @@ class PublicLoginPage: AppCompatActivity() {
         val dialogSubmit = d.findViewById<Button>(R.id.dialogSubmit)
         val dialogEmail = d.findViewById<EditText>(R.id.dialogEmail)
         val error = d.findViewById<TextView>(R.id.error)
-
         val hide = d.findViewById<ConstraintLayout>(R.id.parent)
 
         hide.setOnClickListener {

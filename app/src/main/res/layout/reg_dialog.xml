@@ -92,7 +92,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/translucent_white"
             android:gravity="center"
-            android:hint="Email"
+            android:hint="Email (Optional)"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:inputType="textEmailAddress"
             android:textColor="@color/black"
