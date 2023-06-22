@@ -308,9 +308,8 @@ class Reporting: AppCompatActivity() {
 
         submit.setOnClickListener {
             val jwt = JWT(preferences.getString("publictoken","")!!)
-            val username = jwt.getClaim("Name").asString()
+            val userID = jwt.getClaim("UserID").asString()
 
-            System.out.println("jwt is $username")
 
             error.text = ""
 
@@ -340,7 +339,7 @@ class Reporting: AppCompatActivity() {
                 .addFormDataPart("Longitude", lng.toString())
                 .addFormDataPart("Description", comment.text.toString())
                 .addFormDataPart("Image", file.name, requestFile)
-                .addFormDataPart("UserName", username)
+                .addFormDataPart("UserID", userID)
 
                 .build()
 
