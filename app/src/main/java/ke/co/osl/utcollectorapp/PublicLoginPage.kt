@@ -7,15 +7,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import ke.co.osl.utcollectorapp.api.ApiInterface
-import ke.co.osl.utcollectorapp.models.Message
 import retrofit2.*
 import android.util.Patterns
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
-import ke.co.osl.utcollectorapp.models.LoginBody
-import ke.co.osl.utcollectorapp.models.RecoverPasswordBody
-import ke.co.osl.utcollectorapp.models.RegBody
+import ke.co.osl.utcollectorapp.models.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
@@ -86,12 +83,12 @@ class PublicLoginPage: AppCompatActivity() {
             }
 
             progress.visibility = View.VISIBLE
-            val loginBody = LoginBody(
+            val loginPublicUser = LoginPublicUser(
                 phone.text.toString(),
                 password.text.toString(),
             )
 
-            val apiInterface = ApiInterface.create().loginUser(loginBody)
+            val apiInterface = ApiInterface.create().loginPublicUser(loginPublicUser)
 
             apiInterface.enqueue( object : Callback<Message> {
 

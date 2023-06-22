@@ -310,7 +310,6 @@ class Reporting: AppCompatActivity() {
             val jwt = JWT(preferences.getString("publictoken","")!!)
             val userID = jwt.getClaim("UserID").asString()
 
-
             error.text = ""
 
             val file = File(mCurrentPhotoPath)

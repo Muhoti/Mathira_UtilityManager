@@ -27,7 +27,7 @@ interface ApiInterface {
         fun reportIncident(@Body body: MultipartBody) : Call<Message>
 
         @POST("publicusers/login")
-        fun loginUser(@Body loginBody: LoginBody) : Call<Message>
+        fun loginPublicUser(@Body loginPublicUser: LoginPublicUser) : Call<Message>
 
         @POST("mobile/login")
         fun loginDataCollector(@Body loginBody: LoginBody) : Call<Message>
